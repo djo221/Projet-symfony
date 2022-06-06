@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CLASSE{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">libelle</th>
+      <th scope="col">niveau</th>
+      <th scope="col">filiere</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+ {% for classe in classes %}
+    <tr>
+      <td>{{ classe.libelle }}</td>
+      <td>{{ classe.niveau }}</td>
+      <td>{{ classe.filiere }}</td>
+        <td>
+             <button type="button" class="btn btn-danger">suppimer</button>
+             <button type="button" class="btn btn-warning">modifier</button>
+             <button type="button" class="btn btn-success">details</button>
+        </td>
+    </tr>
+
+    
+    
+  {% endfor %}
+  
+  </tbody>
+  
+</table>
+
+<div class="container-fluid">
+<div class="row text-center ">
+
+{% do classes.setPageRange(10) %}
+{{knp_pagination_render(classes,'pagination.html.twig')}}
+
+ </div>
+</div>
+
+{% endblock %}
